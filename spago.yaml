@@ -1,0 +1,16 @@
+package:
+  name: gopurs-js-promise-aff
+  dependencies:
+    - aff
+    - console
+    - effect
+    - foreign
+    - js-promise
+    - prelude
+  test:
+    main: Test.Main
+    dependencies: []
+workspace:
+  packageSet:
+    registry: 77.11.0
+  extraPackages: {}
