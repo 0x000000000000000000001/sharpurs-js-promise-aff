@@ -3,7 +3,6 @@ module Test.Main where
 import Prelude
 
 import Control.Alt ((<|>))
-import Control.Monad.Except (runExcept)
 import Control.Monad.Reader.Class (class MonadReader, ask, local)
 import Control.Monad.Reader.Trans (runReaderT)
 import Data.Either (either)
@@ -15,8 +14,6 @@ import Effect.Aff.Class (class MonadAff, liftAff)
 import Effect.Class (class MonadEffect, liftEffect)
 import Effect.Console (log)
 import Effect.Exception (error, message)
-import Foreign (readString, unsafeToForeign)
-import Foreign.Index (readProp)
 import Promise.Aff (Promise)
 import Promise.Aff as Promise
 import Test.Assert as Assert
@@ -88,6 +85,4 @@ main = launchAff_ $ flip runReaderT "" do
       res <- attempt $ Promise.toAff promise
       shouldEqual "err123" $ either message (const "-") res
   where
-  errorCodeCoerce v =
-    either (\_ -> error "fail") error
-      (runExcept $ readProp "code" (unsafeToForeign v) >>= readString)
+  errorCodeCoerce _ = error "err"
