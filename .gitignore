@@ -8,3 +8,4 @@ output.bak/
 .psc-ide-port
 .purmeta/
 .DS_Store
+/.purs-repl
